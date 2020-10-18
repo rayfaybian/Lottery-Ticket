@@ -1,0 +1,13 @@
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\bin\Debug\netcoreapp3.1\LotteryTicket.exe
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\bin\Debug\netcoreapp3.1\LotteryTicket.deps.json
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\bin\Debug\netcoreapp3.1\LotteryTicket.runtimeconfig.json
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\bin\Debug\netcoreapp3.1\LotteryTicket.runtimeconfig.dev.json
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\bin\Debug\netcoreapp3.1\LotteryTicket.dll
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\bin\Debug\netcoreapp3.1\LotteryTicket.pdb
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\obj\Debug\netcoreapp3.1\LotteryTicket.csprojAssemblyReference.cache
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\obj\Debug\netcoreapp3.1\LotteryTicket.AssemblyInfoInputs.cache
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\obj\Debug\netcoreapp3.1\LotteryTicket.AssemblyInfo.cs
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\obj\Debug\netcoreapp3.1\LotteryTicket.csproj.CoreCompileInputs.cache
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\obj\Debug\netcoreapp3.1\LotteryTicket.dll
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\obj\Debug\netcoreapp3.1\LotteryTicket.pdb
+C:\Coding\C#\LotteryTicket\LotteryTicket\LotteryTicket\obj\Debug\netcoreapp3.1\LotteryTicket.genruntimeconfig.cache
