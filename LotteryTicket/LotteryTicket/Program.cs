@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 
 namespace LotteryTicket
@@ -25,14 +26,17 @@ namespace LotteryTicket
                              "|      Willkommen beim Lottospiel        |\n" +
                               " ----------------------------------------\n");
 
-
             Boolean isPlaying = true;
             Boolean gameLost = false;
             String input = "";
             int counter = 1;
             while (isPlaying)
             {
-                Console.WriteLine("Was willst du tun?\n\n1) Raten\n2) Aufgeben\n");
+                Console.WriteLine("\n -------------------------\n" +
+                                  "|    Was willst du tun?   |\n" +
+                                  "|         1) Raten        |\n" +
+                                  "|       2) Aufgeben       |\n" +
+                                  " -------------------------\n");
                 input = Console.ReadLine();
 
                 switch (input)
@@ -40,6 +44,8 @@ namespace LotteryTicket
                     case "1":
                         String playerNumber = getPlayerNumber(counter);
                         counter++;
+
+
                         gameLost = TellResult(CheckNumber(ticket, playerNumber), ticket, playerNumber);
 
                         {
@@ -64,40 +70,90 @@ namespace LotteryTicket
 
         public static String getPlayerNumber(int counter)
         {
+            Boolean inputOk = false;
             Console.WriteLine("Errate die 6 Lottozahlen auf dem Ticket.");
             Console.WriteLine("\nTippe eine 6-stellige Zahl ein.\n");
             Console.WriteLine(" ----------------------\n" +
                               "|      " + counter + ". Versuch      |\n" +
                               " ----------------------\n");
-            String number = Console.ReadLine();
+            String number = "";
+            while (!inputOk)
+            {
+                number = Console.ReadLine();
+                if (number.Length < 6)
+                {
+                    Console.WriteLine("Bitte tippe genau 6 Ziffern ein");
+                } else
+                {
+                    inputOk = true;
+                }
+            }
 
             return number;
         }
 
-        public static Boolean CheckNumber(LotteryTicket ticket, String number)
+        public static String CheckNumber(LotteryTicket ticket, String number)
         {
+            char[] correctNumbers = new char[6];
             Boolean isCorrect = false;
+
+            char[] ticketArray = ticket.Number.ToCharArray();
+            char[] playerArray = number.ToCharArray();
+
+
+            for (int i = 0; i < ticketArray.Count(); i++)
+            {
+                if (ticketArray[i].Equals(playerArray[i]))
+                {
+                    correctNumbers[i] = ticketArray[i];
+                }
+                else
+                {
+                    correctNumbers[i] = '_';
+                }
+            }
 
             if (ticket.Number.Equals(number))
             { isCorrect = true; }
 
-            return isCorrect;
+            String solvedDigits = new string(correctNumbers);
+            return solvedDigits;
         }
 
-        public static Boolean TellResult(Boolean isCorrect, LotteryTicket ticket, String number)
+        public static Boolean TellResult(String solvedDigits, LotteryTicket ticket, String number)
         {
+            Boolean isCorrect;
+            if (solvedDigits.Equals(ticket.Number))
+            {
+                isCorrect = true;
+            }
+            else
+            {
+                isCorrect = false;
+            }
+
             Boolean gameLost = false;
             switch (isCorrect)
             {
                 case true:
-                    Console.WriteLine("Gewonnen! Du hast die korrekten Lottozahlen erraten:\n\n" +
+                    Console.WriteLine("Gewonnen! Du hast die korrekten Lottozahlen erraten\n\n" +
              " --------------\n" +
+             "|    Lösung    |\n" +
                             "|    " + ticket.Number + "    |\n" +
                             " --------------\n");
                     gameLost = false;
                     break;
                 case false:
-                    Console.WriteLine("Leider nein. " + number + " ist nicht die gesuchte Zahlenfolge.");
+
+                    if (!solvedDigits.Equals("______"))
+                    {
+
+                        Console.WriteLine("Leider falsch\nDu hast aber mindestens eine Zahl korrekt erraten:\n\n" + solvedDigits + "\n\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Leider nein. " + number + " ist nicht die gesuchte Zahlenfolge.");
+                    }
                     gameLost = true;
                     break;
             }
