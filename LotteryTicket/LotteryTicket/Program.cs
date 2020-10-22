@@ -20,15 +20,15 @@ namespace LotteryTicket
             //sollst du die richtige Zahl ausgeben.
 
             LotteryTicket ticket = new LotteryTicket();
-            //Console.WriteLine(ticket.Number);
+            //Console.WriteLine(ticket.number);
 
             Console.WriteLine(" ----------------------------------------\n" +
                              "|      Willkommen beim Lottospiel        |\n" +
                               " ----------------------------------------\n");
 
-            Boolean isPlaying = true;
-            Boolean gameLost = false;
-            String input = "";
+            bool isPlaying = true;
+            bool gameLost = false;
+            string input = string.Empty;
             int counter = 1;
             while (isPlaying)
             {
@@ -42,11 +42,11 @@ namespace LotteryTicket
                 switch (input)
                 {
                     case "1":
-                        String playerNumber = getPlayerNumber(counter);
+                        string playerNumber = getPlayerNumber(counter);
                         counter++;
 
 
-                        gameLost = TellResult(CheckNumber(ticket, playerNumber), ticket, playerNumber);
+                        gameLost = getResult(CheckNumber(ticket, playerNumber), ticket, playerNumber);
 
                         {
                             if (!gameLost)
@@ -60,9 +60,12 @@ namespace LotteryTicket
                     case "2":
                         Console.WriteLine("\nNa schön du Loser.\nHier ist die Lösung:\n\n" +
                             " --------------\n" +
-                            "|    " + ticket.Number + "    |\n" +
+                            "|    " + ticket.number + "    |\n" +
                             " --------------\n");
                         isPlaying = false;
+                        break;
+                    default:
+                        Console.WriteLine("Bitte wähle zwischen 1 und 2");
                         break;
                 }
             }
@@ -70,20 +73,21 @@ namespace LotteryTicket
 
         public static String getPlayerNumber(int counter)
         {
-            Boolean inputOk = false;
+            bool inputOk = false;
             Console.WriteLine("Errate die 6 Lottozahlen auf dem Ticket.");
             Console.WriteLine("\nTippe eine 6-stellige Zahl ein.\n");
             Console.WriteLine(" ----------------------\n" +
                               "|      " + counter + ". Versuch      |\n" +
                               " ----------------------\n");
-            String number = "";
+            string number = "";
             while (!inputOk)
             {
                 number = Console.ReadLine();
                 if (number.Length < 6)
                 {
                     Console.WriteLine("Bitte tippe genau 6 Ziffern ein");
-                } else
+                }
+                else
                 {
                     inputOk = true;
                 }
@@ -95,9 +99,8 @@ namespace LotteryTicket
         public static String CheckNumber(LotteryTicket ticket, String number)
         {
             char[] correctNumbers = new char[6];
-            Boolean isCorrect = false;
 
-            char[] ticketArray = ticket.Number.ToCharArray();
+            char[] ticketArray = ticket.number.ToCharArray();
             char[] playerArray = number.ToCharArray();
 
 
@@ -112,18 +115,14 @@ namespace LotteryTicket
                     correctNumbers[i] = '_';
                 }
             }
-
-            if (ticket.Number.Equals(number))
-            { isCorrect = true; }
-
-            String solvedDigits = new string(correctNumbers);
+            string solvedDigits = new string(correctNumbers);
             return solvedDigits;
         }
 
-        public static Boolean TellResult(String solvedDigits, LotteryTicket ticket, String number)
+        public static bool getResult(string solvedDigits, LotteryTicket ticket, string number)
         {
-            Boolean isCorrect;
-            if (solvedDigits.Equals(ticket.Number))
+            bool isCorrect;
+            if (solvedDigits.Equals(ticket.number))
             {
                 isCorrect = true;
             }
@@ -132,14 +131,14 @@ namespace LotteryTicket
                 isCorrect = false;
             }
 
-            Boolean gameLost = false;
+            bool gameLost = false;
             switch (isCorrect)
             {
                 case true:
                     Console.WriteLine("Gewonnen! Du hast die korrekten Lottozahlen erraten\n\n" +
              " --------------\n" +
              "|    Lösung    |\n" +
-                            "|    " + ticket.Number + "    |\n" +
+                            "|    " + ticket.number + "    |\n" +
                             " --------------\n");
                     gameLost = false;
                     break;
@@ -160,11 +159,11 @@ namespace LotteryTicket
             return gameLost;
         }
 
-        public static Boolean AskPlayer(LotteryTicket ticket)
+        public static bool AskPlayer(LotteryTicket ticket)
         {
-            Boolean playAgain = false;
-            Boolean playerDecided = false;
-            String input = "";
+            bool playAgain = false;
+            bool playerDecided = false;
+            string input = "";
 
             while (!playerDecided)
             {
