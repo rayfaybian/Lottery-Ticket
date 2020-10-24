@@ -34,14 +34,14 @@ namespace LotteryTicket
             {
                 Console.WriteLine("\n -------------------------\n" +
                                   "|    Was willst du tun?   |\n" +
-                                  "|         1) Raten        |\n" +
-                                  "|       2) Aufgeben       |\n" +
+                                  "|       (s) Spielen       |\n" +
+                                  "|       (b) Beenden       |\n" +
                                   " -------------------------\n");
                 input = Console.ReadLine();
 
-                switch (input)
+                switch (input.ToLower())
                 {
-                    case "1":
+                    case "s":
                         string playerNumber = getPlayerNumber(counter);
                         counter++;
 
@@ -57,7 +57,7 @@ namespace LotteryTicket
                         }
                         break;
 
-                    case "2":
+                    case "b":
                         Console.WriteLine("\nNa schön du Loser.\nHier ist die Lösung:\n\n" +
                             " --------------\n" +
                             "|    " + ticket.number + "    |\n" +
@@ -65,7 +65,7 @@ namespace LotteryTicket
                         isPlaying = false;
                         break;
                     default:
-                        Console.WriteLine("Bitte wähle zwischen 1 und 2");
+                        Console.WriteLine("Bitte wähle zwischen s und b");
                         break;
                 }
             }
@@ -112,7 +112,7 @@ namespace LotteryTicket
                 }
                 else
                 {
-                    correctNumbers[i] = '_';
+                    correctNumbers[i] = '.';
                 }
             }
             string solvedDigits = new string(correctNumbers);
@@ -147,11 +147,11 @@ namespace LotteryTicket
                     if (!solvedDigits.Equals("______"))
                     {
 
-                        Console.WriteLine("Leider falsch\nDu hast aber mindestens eine Zahl korrekt erraten:\n\n" + solvedDigits + "\n\n");
+                        Console.WriteLine("\nLeider falsch\nDu hast aber mindestens eine Zahl korrekt erraten:\n\n" + solvedDigits + "\n\n");
                     }
                     else
                     {
-                        Console.WriteLine("Leider nein. " + number + " ist nicht die gesuchte Zahlenfolge.");
+                        Console.WriteLine("\nLeider nein. " + number + " ist nicht die gesuchte Zahlenfolge.");
                     }
                     gameLost = true;
                     break;
